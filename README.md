@@ -1,6 +1,6 @@
 # This is my SpringClone Application
 ### Basically I implemented Spring/Spring Boot frameworks from scratch with Java and Kotlin programming languages
-### You can find the project tutorial from [medium](https://medium.com/@halillbaydar/deconstructing-spring-and-spring-boot-frameworks-ff5bd1ead3d)
+### You can find the project tutorial on [medium](https://medium.com/@halillbaydar/deconstructing-spring-and-spring-boot-frameworks-ff5bd1ead3d)
 
 ### Project Module Structure
 <img width="227" alt="image" src="https://user-images.githubusercontent.com/48048893/221378025-c34e6b08-4c41-4ecd-8fe5-76007038b65c.png">

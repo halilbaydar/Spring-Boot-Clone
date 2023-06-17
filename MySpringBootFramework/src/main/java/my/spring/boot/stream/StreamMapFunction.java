@@ -1,4 +1,4 @@
-package myspring.stream;
+package my.spring.boot.stream;
 
 //from https://www.oreilly.com/content/handling-checked-exceptions-in-java-streams/
 @FunctionalInterface

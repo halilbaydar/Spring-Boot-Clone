@@ -1,10 +1,10 @@
-package myspring;
+package my.spring.boot;
 
 import com.sun.net.httpserver.Headers;
 import com.sun.net.httpserver.HttpExchange;
-import myspring.annotation.MySpringBootApplication;
-import myspring.context.SpringApplicationContext;
-import server.MyServer;
+import my.spring.boot.server.MyServer;
+import my.spring.boot.annotation.MySpringBootApplication;
+import my.spring.boot.context.SpringApplicationContext;
 
 import java.io.OutputStream;
 import java.lang.reflect.Method;
@@ -19,8 +19,8 @@ public class MySpringApplication {
     private volatile static SpringApplicationContext context;
 
     public synchronized static void run(Class<?> bootClass) {
-        MySpringApplication.context = new SpringApplicationContext(bootClass);
         if (bootClass.isAnnotationPresent(MySpringBootApplication.class)) {
+            MySpringApplication.context = new SpringApplicationContext(bootClass);
             MyServer.initMyServer((exchange) -> {
                 try {
                     handleRequest(exchange);
@@ -48,13 +48,10 @@ public class MySpringApplication {
             Object response = endpointHandler.invoke(controllerComponent);
             handleResponse(httpExchange, 200, response);
         } catch (Exception e) {
-            switch (e.getMessage()) {
-                case "not found":
-                    handleResponse(httpExchange, 404, e.getMessage());
-                    break;
-                default:
-                    handleResponse(httpExchange, 500, e.getMessage());
-                    break;
+            if (e.getMessage().equals("not found")) {
+                handleResponse(httpExchange, 404, e.getMessage());
+            } else {
+                handleResponse(httpExchange, 500, e.getMessage());
             }
         }
     }

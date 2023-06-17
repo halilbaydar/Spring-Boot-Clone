@@ -1,9 +1,9 @@
 package com.my.server.controller;
 
 
-import myspring.annotation.MyAutowired;
-import myspring.annotation.MyGetMapping;
-import myspring.annotation.MyRestController;
+import my.spring.boot.annotation.MyAutowired;
+import my.spring.boot.annotation.MyGetMapping;
+import my.spring.boot.annotation.MyRestController;
 import com.my.server.model.resource.UserResource;
 import com.my.server.service.UserService;
 

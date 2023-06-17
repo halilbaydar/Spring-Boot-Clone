@@ -1,7 +1,8 @@
-package myspring.context;
+package my.spring.boot.context;
 
-import myspring.annotation.MyAutowired;
-import myspring.annotation.MyComponentScan;
+import my.spring.boot.annotation.MyAutowired;
+import my.spring.boot.annotation.MyComponentScan;
+import my.spring.boot.stream.StreamWrapper;
 
 import java.io.File;
 import java.io.IOException;
@@ -17,9 +18,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Stream;
-
-import static myspring.stream.StreamWrapper.foreachWrapper;
-import static myspring.stream.StreamWrapper.mapWrapper;
 
 public class SpringApplicationContext {
     private static final ConcurrentHashMap<Class<?>, Object> instances = new ConcurrentHashMap<>();
@@ -81,7 +79,7 @@ public class SpringApplicationContext {
 
             classes
                     .parallel()
-                    .forEach(foreachWrapper(cls -> {
+                    .forEach(StreamWrapper.foreachWrapper(cls -> {
                         if (Stream.of(supportedComponents).anyMatch(cls::isAnnotationPresent)) {
                             Constructor<?> constructor = cls.getDeclaredConstructor();
                             Object instance = constructor.newInstance();
@@ -95,17 +93,17 @@ public class SpringApplicationContext {
                     .parallel()
                     .map(packageName -> packageName.length() > 1 ? packageName.replace(".", "/") : packageName)
                     .map(packageName -> Objects.requireNonNull(bootClass.getResource(packageName)))
-                    .map(mapWrapper(URL::toURI))
+                    .map(StreamWrapper.mapWrapper(URL::toURI))
                     .filter(Objects::nonNull)
                     .filter(uri -> uri.getScheme().equals("file")) //TODO include jar files
-                    .map(mapWrapper(uri -> findAllPackageClasses(Paths.get(uri))))
+                    .map(StreamWrapper.mapWrapper(uri -> findAllPackageClasses(Paths.get(uri))))
                     .filter(Objects::nonNull)
                     .flatMap(Arrays::stream);
         }
 
         private static Class<?>[] findAllPackageClasses(Path paramPath) throws IOException {
             return Stream.of(findAllFilesUnderParentPackage(paramPath))
-                    .map(mapWrapper(Class::forName))
+                    .map(StreamWrapper.mapWrapper(Class::forName))
                     .filter(Objects::nonNull)
                     .toArray(Class[]::new);
         }

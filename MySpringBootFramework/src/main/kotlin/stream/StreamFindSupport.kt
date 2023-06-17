@@ -1,11 +1,11 @@
 package com.java.myspring.stream
 
-import myspring.annotation.MyGetMapping
-import myspring.annotation.MyPostMapping
-import myspring.annotation.MyPutMapping
-import myspring.annotation.MyRestController
-import myspring.constant.HttpMethod
-import myspring.context.SpringApplicationContext
+import my.spring.boot.annotation.MyGetMapping
+import my.spring.boot.annotation.MyPostMapping
+import my.spring.boot.annotation.MyPutMapping
+import my.spring.boot.annotation.MyRestController
+import my.spring.boot.constant.HttpMethod
+import my.spring.boot.context.SpringApplicationContext
 import java.lang.reflect.Method
 import java.net.URI
 import java.util.stream.Stream

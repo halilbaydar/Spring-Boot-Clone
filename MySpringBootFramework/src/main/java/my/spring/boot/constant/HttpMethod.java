@@ -1,4 +1,4 @@
-package myspring.constant;
+package my.spring.boot.constant;
 
 public final class HttpMethod {
     public static final String GET = "GET";

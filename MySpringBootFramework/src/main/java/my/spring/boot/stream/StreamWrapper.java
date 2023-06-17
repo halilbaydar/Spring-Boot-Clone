@@ -1,4 +1,4 @@
-package myspring.stream;
+package my.spring.boot.stream;
 
 import java.util.function.Consumer;
 import java.util.function.Function;

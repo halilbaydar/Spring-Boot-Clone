@@ -21,10 +21,6 @@
             <groupId>my.spring.clone</groupId>
             <artifactId>MySpringBootFramework</artifactId>
         </dependency>
-        <dependency>
-            <groupId>my.spring.clone</groupId>
-            <artifactId>MySpringFramework</artifactId>
-        </dependency>
     </dependencies>
 
 </project>

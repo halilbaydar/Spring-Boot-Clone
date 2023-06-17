@@ -1,10 +1,10 @@
 package com.my.server;
 
-import myspring.MySpringApplication;
-import myspring.annotation.MyComponentScan;
-import myspring.annotation.MyRestController;
-import myspring.annotation.MyService;
-import myspring.annotation.MySpringBootApplication;
+import my.spring.boot.MySpringApplication;
+import my.spring.boot.annotation.MyComponentScan;
+import my.spring.boot.annotation.MyRestController;
+import my.spring.boot.annotation.MyService;
+import my.spring.boot.annotation.MySpringBootApplication;
 
 @MyComponentScan(
         path = {"."},

@@ -1,4 +1,4 @@
-package myspring.annotation;
+package my.spring.boot.annotation;
 
 
 import java.lang.annotation.ElementType;

@@ -9,7 +9,6 @@
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>MySpringFramework</module>
         <module>MySpringBootFramework</module>
         <module>MyBackendServer</module>
     </modules>
@@ -25,11 +24,6 @@
             <dependency>
                 <groupId>my.spring.clone</groupId>
                 <artifactId>MySpringBootFramework</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>my.spring.clone</groupId>
-                <artifactId>MySpringFramework</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>

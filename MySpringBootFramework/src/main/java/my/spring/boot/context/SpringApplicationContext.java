@@ -65,7 +65,7 @@ public class SpringApplicationContext {
     }
 
     private static class MySpring {
-        public static void initializeSpringContext(Class<?> bootClass) {
+        static void initializeSpringContext(Class<?> bootClass) {
 
             if (!bootClass.isAnnotationPresent(MyComponentScan.class)) {
                 throw new RuntimeException("app config class has to be annotated with configuration interface");
@@ -109,14 +109,15 @@ public class SpringApplicationContext {
         }
 
         private static String[] findAllFilesUnderParentPackage(Path path) throws IOException {
-            return Files.walk(path)
-                    .filter(Files::exists)
-                    .filter(Files::isRegularFile)
-                    .filter(path1 -> path1.getFileName().toString().endsWith(".class"))
-                    .map(mPath -> mPath.toString().split("classes/")[1]
-                            .replace(File.separator, ".")
-                            .replaceFirst("\\.class$", ""))
-                    .toArray(String[]::new);
+            try (final var files = Files.walk(path, Integer.MAX_VALUE)) {
+                return files.filter(Files::exists)
+                        .filter(Files::isRegularFile)
+                        .filter(path1 -> path1.getFileName().toString().endsWith(".class"))
+                        .map(mPath -> mPath.toString().split("classes/")[1]
+                                .replace(File.separator, ".")
+                                .replaceFirst("\\.class$", ""))
+                        .toArray(String[]::new);
+            }
         }
     }
 }
